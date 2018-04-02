@@ -1,5 +1,5 @@
 # phalcon7-demo
-    基于phalcon7拓展开发s
+    基于phalcon7拓展开发
 # 目录结构
 ```
 ├── app
