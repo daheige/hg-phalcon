@@ -1,6 +1,7 @@
 # phalcon7-demo
     基于phalcon7拓展开发s
 # 目录结构
+```
 ├── app
 │   ├── AppBoot.php
 │   ├── bootstrap
@@ -31,6 +32,8 @@
 └── vendor
     ├── autoload.php
     └── composer
+```
+
 # apache设置
     public目录下.htaccess 将全部的URI重定向到public/index.php文件
         AddDefaultCharset UTF-8
@@ -63,15 +66,15 @@
 # nginx配置(请根据具体情况调整)
     使用 $_SERVER[‘REQUEST_URI’] 作为 URLs的源：
 
-    server {
+        server {
         listen      80;
-        server_name localhost.dev;
-        root        /var/www/phalcon/public;
+        server_name www.hgphalcon.com *.hgphalcon.com;
+        root        /web/hg-phalcon/public;
         index       index.php index.html index.htm;
         charset     utf-8;
 
         location / {
-            try_files $uri $uri/ /index.php;
+                try_files $uri $uri/ /index.php?_url=$uri&$args;
         }
 
         location ~ \.php$ {
@@ -85,19 +88,21 @@
             fastcgi_param PATH_INFO       $fastcgi_path_info;
             fastcgi_param PATH_TRANSLATED $document_root$fastcgi_path_info;
             fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            fastcgi_param APP_ENV "Testing";
         }
 
         location ~ /\.ht {
             deny all;
         }
 
-        location ~ .*\.(xml|gif|jpg|jpeg|png|bmp|swf|woff|woff2|ttf|js|css)$ {
+        location ~ .*\.(xml|gif|jpg|jpeg|png|bmp|swf|woff|woff2|ttf|js|css|mp3|mp4|ico)$ {
                 expires 30d;
         }
 
         error_log /var/log/nginx/logs/hg-phalcon-error.log;
         access_log /var/log/nginx/logs/hg-phalcon-access.log;
     }
+
 
 # 参考文档:
     1. https://www.w3cschool.cn/phalcon7/phalcon7-module.html
