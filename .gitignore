@@ -1,0 +1,9 @@
+*.log
+storage/
+storage/*
+vendor/
+vendor/*
+LICENSE.txt
+composer.lock
+public/uploads/
+public/uploads/*
